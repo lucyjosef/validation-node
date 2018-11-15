@@ -1,5 +1,6 @@
 const express = require('express')
 const fs = require('fs')
+fse = require('fs-extra')
 
 const port1 = 4000
 const port2 = 4001
@@ -22,7 +23,7 @@ app1.get('/', function(req, res){
 })
 
 
-/* APP 2 */
+/* APP 2 secret server */
 app2.listen(port2, () => {
   console.log(`Listening on ${port2}`)
 })
@@ -36,10 +37,11 @@ app2.get('/secret', function(req, res){
 })
 
 app2.put('/secret', function(req,res) {
-	const test = reverseString(req.body)
-	fs.writeFile(__dirname + '/public/data.json', reverseString(req.body), 'utf8', ()=>{
-		res.send(test)
-	})
+	console.log(req.body)
+	// const reversed = reverseString(req.body.toString())
+	// fs.writeFile(__dirname + '/data/secret.txt', reversed, 'utf8', ()=>{
+	// 	res.json(reversed)
+	// })
 })
 
 
