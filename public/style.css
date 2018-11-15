@@ -25,6 +25,12 @@ footer {
 .float-right{
 	float: right;
 }
+.flex {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+    align-items: center;
+}
 
 /* IDS */
 #formSecret{
@@ -39,6 +45,11 @@ footer {
 	background-color: white;
 	color: #0288d1;
 	border: none;
+}
+#github {
+	font-size: 3em;
+	position: absolute;
+	bottom: 50px;
 }
 
 .pagination a {

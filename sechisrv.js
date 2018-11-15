@@ -4,6 +4,9 @@ const fs = require('fs')
 const fetch = require('node-fetch');
 const port = 4002
 const app = express()
+const cors = require('cors')
+app.use(cors())
+app.options('*', cors())
 const options_date = {
   method: 'GET',
   headers: {

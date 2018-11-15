@@ -55,6 +55,32 @@
 				this.secretServ.push({'text': 'ERROR : missed thisone', "time": Date.now()})
 			})
 
+			//fetch both
+            fetch('http://localhost:4002/',
+            {  
+                headers: {
+                	'Accept': 'application/json'
+                },
+            })
+            .then((res) =>{
+                return res.json()
+            })
+            .then((myJson) =>{
+            	console.log(myJson)
+                let time = JSON.stringify(myJson[0].time)
+                let secret = JSON.stringify(myJson[0].secret[0].text)
+                if(this.bothServ.length === 100){
+					this.bothServ.shift()
+					this.bothServ.push({'time': time, 'secret': secret, 'date': Date.now()})
+				} else {
+					this.bothServ.push({'text': test, 'time': Date.now()})
+				}
+            })
+            .catch(err =>{
+                console.log(err)
+                this.bothServ.push({'date': 'DOWN', 'secret': 'DOWN too :('})
+            })
+
         	}, 1000)      
     	},
 		data:{
@@ -64,6 +90,7 @@
 			title: 'Validation Node2',
             timeServ:[],
             secretServ: [],
+            bothServ: [],
             startPag: 0,
             lastPag : 10,
         }, 
@@ -78,6 +105,11 @@
             return this.secretServ.slice(this.startPag, this.lastPag)
 
           },
+          paginationBoth: function (){
+            console.log(this.startPag, this.lastPag)
+            return this.bothServ.slice(this.startPag, this.lastPag)
+
+          }
 		},
 		methods: {
 			editSecret: function() {
