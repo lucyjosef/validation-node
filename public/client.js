@@ -43,14 +43,13 @@
 				return res.json()
 			})
 			.then((myJson) => {
-				// let data = JSON.stringify(myJson)
-				// data.forEach(el => {
-				// 	console.log(el.text)
-					
-				// })
 				var test = JSON.stringify(myJson[0].text)
-				console.log(test)
-				this.secretServ.push({'text': test})
+				if(this.secretServ.length === 10){
+					this.secretServ.shift()
+					this.secretServ.push({'text': test})
+				} else {
+					this.secretServ.push({'text': test})
+				}
 			})
 			.catch((err) => {
 				console.log(err)

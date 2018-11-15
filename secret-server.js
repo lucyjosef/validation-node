@@ -25,7 +25,6 @@ app.get('/secret', function(req, res){
 			if (err) throw err;
 			const reversed = reverseString(data)
 			let json = JSON.stringify([{"text": reversed}])
-			console.log(json)
 			res.send(json)
 		})
 	} else {
