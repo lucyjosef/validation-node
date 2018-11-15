@@ -1,5 +1,6 @@
 .pagination {
     display: inline-block;
+    border-top: 1px solid #0288d1;
 }
 
 /* ELEMENT */

@@ -43,7 +43,7 @@
 			})
 			.then((myJson) => {
 				var test = JSON.stringify(myJson[0].text)
-				if(this.secretServ.length === 10){
+				if(this.secretServ.length === 100){
 					this.secretServ.shift()
 					this.secretServ.push({'text': test, 'time': Date.now()})
 				} else {
@@ -73,6 +73,11 @@
             return this.timeServ.slice(this.startPag, this.lastPag)
 
           },
+          paginationSecret: function (){
+            console.log(this.startPag, this.lastPag)
+            return this.secretServ.slice(this.startPag, this.lastPag)
+
+          },
 		},
 		methods: {
 			editSecret: function() {
@@ -100,6 +105,10 @@
                 let diff = timeNow - arg
                 let result = Math.floor(diff / 1000);
               return result
+            },
+            reverseAll : function() {
+            	this.timeServ.reverse()
+            	this.secretServ.reverse()
             }
 		}
 	})

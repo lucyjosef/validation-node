@@ -25,8 +25,6 @@
 		      		<i class="fa fa-remove"></i>
 		    	</a>
 		    	<img src="/client/assets/img/sheep.jpg" style="width:100%;" class="w3-round">
-		    	<!-- <iframe src="https://giphy.com/embed/sk6yL9EGVeAcE" width="480" height="197" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-		    	<p><a href="https://giphy.com/gifs/matrix-cinematography-sk6yL9EGVeAcE"></a></p> -->
 		    	<br><br>
 		    	<h4><b>NODE.js et Vue.js</b></h4>
 		    	<p class="w3-text-grey">Membres du groupe : Jérémie, Maxime et Lucie.<br>Trois servers différents, Time, Secret et History. <br>Have fun !</p>
@@ -57,7 +55,7 @@
 			      <button class="w3-button w3-white w3-hide-small" @click="selectedServer = 'history'">
 			      	<i class="fa fa-book w3-margin-right"></i>History
 			      </button>
-			      <button class="w3-button w3-white w3-hide-small float-right" @click="selectedServer = 'history'">
+			      <button class="w3-button w3-white w3-hide-small float-right" @click="reverseAll()">
 			      	<i class="fas fa-exchange-alt w3-margin-right"></i>Reverse
 			      </button>
 			    </div>
@@ -70,41 +68,49 @@
 			      	<img src="/w3images/mountains.jpg" alt="Time" style="width:100%" class="w3-hover-opacity">
 			      	<div class="w3-container w3-white">
 			        	<p><b>Time</b></p>
-						<p>Descriptoin du module time par Jérémie</p>
 						
 						<ul>
 							<li v-for="item in pagination" >{{item.date}} - il y'a : {{dateDiff(item.time)}} seconde(s)</li>
 						</ul>
 					
-					
-					
-					
-							<div class="pagination">
-									<a href="#">&laquo;</a>
-									<a v-on:click="startPag = 0 ; lastPag = 10" >1</a>
-									<a v-on:click="startPag = 11 ; lastPag = 20">2</a>
-									<a v-on:click="startPag = 21 ; lastPag = 30">3</a>
-									<a v-on:click="startPag = 31 ; lastPag = 40">4</a>
-									<a v-on:click="startPag = 41 ; lastPag = 50">5</a>
-									<a v-on:click="startPag = 51 ; lastPag = 60">6</a>
-									<a v-on:click="startPag = 61 ; lastPag = 70">7</a>
-									<a v-on:click="startPag = 71 ; lastPag = 80">8</a>
-									<a v-on:click="startPag = 81 ; lastPag = 90">9</a>
-									<a v-on:click="startPag = 91 ; lastPag = 100">10</a>
-									<a href="#">&raquo;</a>
-								  </div>
+						<div class="pagination">
+							<a href="#">&laquo;</a>
+							<a v-on:click="startPag = 0 ; lastPag = 10" >1</a>
+							<a v-on:click="startPag = 11 ; lastPag = 20">2</a>
+							<a v-on:click="startPag = 21 ; lastPag = 30">3</a>
+							<a v-on:click="startPag = 31 ; lastPag = 40">4</a>
+							<a v-on:click="startPag = 41 ; lastPag = 50">5</a>
+							<a v-on:click="startPag = 51 ; lastPag = 60">6</a>
+							<a v-on:click="startPag = 61 ; lastPag = 70">7</a>
+							<a v-on:click="startPag = 71 ; lastPag = 80">8</a>
+							<a v-on:click="startPag = 81 ; lastPag = 90">9</a>
+							<a v-on:click="startPag = 91 ; lastPag = 100">10</a>
+							<a href="#">&raquo;</a>
+						</div>
 			      	</div>
 			    </div>
 
 			    <div class="w3-third w3-container w3-margin-bottom" v-if="selectedServer == 'all' || selectedServer == 'secret'">
 			      	<img src="/w3images/lights.jpg" alt="Secret" style="width:100%" class="w3-hover-opacity">
 			      	<div class="w3-container w3-white">
-				        <p><strong>Secret</strong></p>
-				        <p>Descriptioin du server secret par Lucie</p>
-						<i class="far fa-plus-square" style="font-size:3em;" @click="selectedServer = 'editor'"></i>
+				        <p><strong>Secret</strong><i class="far fa-plus-square" style="font-size:3em; float:right;" @click="selectedServer = 'editor'"></i></p>
 						<ul>
-			        		<li v-for="item in secretServ"> {{ item.text }} - il y a : {{ dateDiff(item.time) }} seconde(s) </li>
+			        		<li v-for="item in paginationSecret"> {{ item.text }} - il y a : {{ dateDiff(item.time) }} seconde(s) </li>
 			        	</ul>
+			        	<div class="pagination">
+							<a href="#">&laquo;</a>
+							<a v-on:click="startPag = 0 ; lastPag = 10" >1</a>
+							<a v-on:click="startPag = 11 ; lastPag = 20">2</a>
+							<a v-on:click="startPag = 21 ; lastPag = 30">3</a>
+							<a v-on:click="startPag = 31 ; lastPag = 40">4</a>
+							<a v-on:click="startPag = 41 ; lastPag = 50">5</a>
+							<a v-on:click="startPag = 51 ; lastPag = 60">6</a>
+							<a v-on:click="startPag = 61 ; lastPag = 70">7</a>
+							<a v-on:click="startPag = 71 ; lastPag = 80">8</a>
+							<a v-on:click="startPag = 81 ; lastPag = 90">9</a>
+							<a v-on:click="startPag = 91 ; lastPag = 100">10</a>
+							<a href="#">&raquo;</a>
+						</div>
 			      	</div>
 			    </div>
 
@@ -112,7 +118,6 @@
 			      	<img src="/w3images/nature.jpg" alt="History" style="width:100%" class="w3-hover-opacity">
 			      	<div class="w3-container w3-white">
 			        	<p><b>History</b></p>
-			        	<p>Description de la partie history server Maxime</p>
 			      	</div>
 			    </div>
 
