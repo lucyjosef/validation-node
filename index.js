@@ -4,12 +4,10 @@ fse = require('fs-extra')
 
 const port1 = 4000
 const port2 = 4001
-const port3 = 4002
 const port4 = 4003
 
 const app1 = express()
 const app2 = express()
-const app3 = express()
 const app4 = express()
 
 
@@ -42,12 +40,6 @@ app2.put('/secret', function(req,res) {
 	// fs.writeFile(__dirname + '/data/secret.txt', reversed, 'utf8', ()=>{
 	// 	res.json(reversed)
 	// })
-})
-
-
-/* APP 3 */
-app3.listen(port3, () => {
-  console.log(`Listening on ${port3}`)
 })
 
 /* APP 4 */
