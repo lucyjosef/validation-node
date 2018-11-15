@@ -46,9 +46,9 @@
 				var test = JSON.stringify(myJson[0].text)
 				if(this.secretServ.length === 10){
 					this.secretServ.shift()
-					this.secretServ.push({'text': test})
+					this.secretServ.push({'text': test, 'time': Date.now()})
 				} else {
-					this.secretServ.push({'text': test})
+					this.secretServ.push({'text': test, 'time': Date.now()})
 				}
 			})
 			.catch((err) => {

@@ -56,6 +56,9 @@
 			      <button class="w3-button w3-white w3-hide-small" @click="selectedServer = 'history'">
 			      	<i class="fa fa-book w3-margin-right"></i>History
 			      </button>
+			      <button class="w3-button w3-white w3-hide-small float-right" @click="selectedServer = 'history'">
+			      	<i class="fas fa-exchange-alt w3-margin-right"></i>Reverse
+			      </button>
 			    </div>
 			    </div>
 			  </header>
@@ -80,7 +83,7 @@
 				        <p>Descriptioin du server secret par Lucie</p>
 						<i class="far fa-plus-square" style="font-size:3em;" @click="selectedServer = 'editor'"></i>
 						<ul>
-			        		<li v-for="item in secretServ"> {{ item.text }} </li>
+			        		<li v-for="item in secretServ"> {{ item.text }} - il y a : {{ dateDiff(item.time) }} seconde(s) </li>
 			        	</ul>
 			      	</div>
 			    </div>
