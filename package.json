@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "nodemon": "node_modules/.bin/nodemon index.js & node_modules/.bin/nodemon secret.js",
-    "start": "npm run nodemon",
-    "timeserver" : "node_modules/.bin/nodemon time-server.js"
+    "nodemon": "node_modules/.bin/nodemon index.js & node_modules/.bin/nodemon sechisrv.js",
+    "start": "npm run nodemon"
   },
   "repository": {
     "type": "git",

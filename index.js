@@ -4,12 +4,10 @@ fse = require('fs-extra')
 
 const port1 = 4000
 const port2 = 4001
-const port3 = 4002
 const port4 = 4003
 
 const app1 = express()
 const app2 = express()
-const app3 = express()
 const app4 = express()
 
 const jsonMiddleware = express.json()
