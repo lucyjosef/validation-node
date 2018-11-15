@@ -18,7 +18,11 @@ const postDataDate = JSON.stringify({
 app.listen(port, () => {
   console.log(`Listening on ${port}`)
 })
-app.get('/')
+app.get('/:id', (req, res) =>{
+  const id = req.params.id
+    console.log(id)
+  res.send(log[id - 1 ])
+})
 app.get('/', (req, res) => {
   const combinedData = {"time":{},"secret":{}}
   Promise.all([
