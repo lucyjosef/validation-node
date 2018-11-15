@@ -10,6 +10,27 @@
 <body>
 	<div id="app">
 		<h1>{{ title }}</h1>
+		<ul>
+			<li v-for="item in pagination" >{{item.date}} - il y'a : {{dateDiff(item.time)}} seconde(s)</li>
+		</ul>
+
+
+
+
+		<div class="pagination">
+				<a href="#">&laquo;</a>
+				<a v-on:click="startPag = 0 ; lastPag = 10" >1</a>
+				<a v-on:click="startPag = 11 ; lastPag = 20">2</a>
+				<a v-on:click="startPag = 21 ; lastPag = 30">3</a>
+				<a v-on:click="startPag = 31 ; lastPag = 40">4</a>
+				<a v-on:click="startPag = 41 ; lastPag = 50">5</a>
+				<a v-on:click="startPag = 51 ; lastPag = 60">6</a>
+				<a v-on:click="startPag = 61 ; lastPag = 70">7</a>
+				<a v-on:click="startPag = 71 ; lastPag = 80">8</a>
+				<a v-on:click="startPag = 81 ; lastPag = 90">9</a>
+				<a v-on:click="startPag = 91 ; lastPag = 100">10</a>
+				<a href="#">&raquo;</a>
+			  </div>
 	</div>
 
 	<script type="text/javascript" src="/client/lib/vue.js"></script>

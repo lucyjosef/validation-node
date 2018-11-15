@@ -16,7 +16,7 @@
             .then((myJson) =>{
                 let data = JSON.parse(myJson)
 
-                if(this.timeServ.length === 10){
+                if(this.timeServ.length === 100){
                     this.timeServ.shift()
 
                     data.forEach(el =>{ 
@@ -46,8 +46,19 @@
 		data:{
             title: 'Validation Node2',
             timeServ:[],
+            startPag: 0,
+            lastPag : 10,
         }, 
+        computed:{
+          pagination: function (){
+            console.log(this.startPag, this.lastPag)
+            return this.timeServ.slice(this.startPag, this.lastPag)
+
+          },
+  
+        },
         methods:{
+            
             dateDiff : (arg) => {
                 let timeNow = Date.now()
                 console.log(timeNow, arg)
