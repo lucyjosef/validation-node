@@ -28,7 +28,18 @@ app2.listen(port2, () => {
 })
 
 app2.get('/secret', function(req, res){
-	console.log('secret')
+	fs.readFile(__dirname + '/data/secret.txt', 'utf8', (err, data) => {
+		if (err) throw err;
+		const reversed = reverseString(data)
+		res.send(reversed)
+	})
+})
+
+app2.put('/secret', function(req,res) {
+	const test = reverseString(req.body)
+	fs.writeFile(__dirname + '/public/data.json', reverseString(req.body), 'utf8', ()=>{
+		res.send(test)
+	})
 })
 
 
@@ -45,3 +56,9 @@ app4.use(
   '/client',
   express.static(__dirname + '/public')
 )
+
+
+/* PRIVATE FUNCTIONS */
+function reverseString(str) {
+	return str.split('').reverse().join('')
+}
