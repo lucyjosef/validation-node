@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Page Title</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" media="screen" href="/client/style.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+	body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+	</style>
+</head>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+	<div id="app">
+
+		<!-- Sidebar/menu -->
+		<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+		  	<div class="w3-container">
+		    	<a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+		      		<i class="fa fa-remove"></i>
+		    	</a>
+		    	<img src="/client/assets/img/sheep.jpg" style="width:100%;" class="w3-round">
+		    	<br><br>
+		    	<h4><b>NODE.js et Vue.js</b></h4>
+		    	<p class="w3-text-grey">Membres du groupe : Jérémie, Maxime et Lucie.<br>Trois servers différents, Time, Secret et History. <br>Have fun !</p>
+		  	</div>
+		  	<div class="flex">
+			  	<a href="https://github.com/lucyjosef/validation-node" target="_blank">
+	      			<i class="fab fa-github" id="github"></i>
+	      		</a>
+	      	</div>
+		</nav>
+
+			<!-- Overlay effect when opening sidebar on small screens -->
+			<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+			<!-- !PAGE CONTENT! -->
+			<div class="w3-main" style="margin-left:300px">
+
+			  <!-- Header -->
+			  <header id="portfolio">
+			    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+			    <div class="w3-container">
+			    <h1>Validation <b>Node.js et Vue.js</b></h1>
+			    <div class="w3-section w3-bottombar w3-padding-16">
+			      <span class="w3-margin-right">Filter:</span> 
+			      <button class="w3-button w3-black" @click="selectedServer = 'all'">ALL</button>
+			      <button class="w3-button w3-white w3-hide-small" @click.prevent="selectedServer = 'time'">
+			      	<i class="fa fa-clock-o w3-margin-right"></i>Time
+			      </button>
+			      <button class="w3-button w3-white" @click="selectedServer = 'secret'">
+			      	<i class="fa fa-user-secret w3-margin-right"></i>Secret
+			      </button>
+			      <button class="w3-button w3-white w3-hide-small" @click="selectedServer = 'history'">
+			      	<i class="fa fa-book w3-margin-right"></i>History
+			      </button>
+			      <button class="w3-button w3-white w3-hide-small float-right" @click="reverseAll()">
+			      	<i class="fas fa-exchange-alt w3-margin-right"></i>Reverse
+			      </button>
+			    </div>
+			    </div>
+			  </header>
+			  
+			  <!-- First Photo Grid-->
+			  <div class="w3-row-padding">
+			    <div class="w3-third w3-container w3-margin-bottom" v-if="selectedServer == 'all' || selectedServer == 'time'">
+			      	<div class="w3-container w3-white">
+			        	<p><b>Time</b></p>
+						
+						<ul>
+							<li v-for="item in pagination" >{{item.date}} - il y'a : {{dateDiff(item.time)}} seconde(s)</li>
+						</ul>
+						<div class="pagination">
+							<ul>
+								<li>&laquo;</li>
+								<li v-on:click="startPag = 0 ; lastPag = 10" >1</li>
+								<li v-on:click="startPag = 11 ; lastPag = 20">2</li>
+								<li v-on:click="startPag = 21 ; lastPag = 30">3</li>
+								<li v-on:click="startPag = 31 ; lastPag = 40">4</li>
+								<li v-on:click="startPag = 41 ; lastPag = 50">5</li>
+								<li v-on:click="startPag = 51 ; lastPag = 60">6</li>
+								<li v-on:click="startPag = 61 ; lastPag = 70">7</li>
+								<li v-on:click="startPag = 71 ; lastPag = 80">8</li>
+								<li v-on:click="startPag = 81 ; lastPag = 90">9</li>
+								<li v-on:click="startPag = 91 ; lastPag = 100">10</li>
+								<li>&raquo;</li>
+							</ul>
+						</div>
+			      	</div>
+			    </div>
+
+			    <div class="w3-third w3-container w3-margin-bottom" v-if="selectedServer == 'all' || selectedServer == 'secret'">
+			      	<div class="w3-container w3-white">
+				        <p><strong>Secret</strong><i class="far fa-plus-square" style="font-size:3em; float:right;" @click="selectedServer = 'editor'"></i></p>
+						<ul>
+			        		<li v-for="item in paginationSecret"> {{ item.text }} - il y a : {{ dateDiff(item.time) }} seconde(s) </li>
+			        	</ul>
+			        	<div class="pagination">
+							<ul>
+								<li>&laquo;</li>
+								<li v-on:click="startPag = 0 ; lastPag = 10" >1</li>
+								<li v-on:click="startPag = 11 ; lastPag = 20">2</li>
+								<li v-on:click="startPag = 21 ; lastPag = 30">3</li>
+								<li v-on:click="startPag = 31 ; lastPag = 40">4</li>
+								<li v-on:click="startPag = 41 ; lastPag = 50">5</li>
+								<li v-on:click="startPag = 51 ; lastPag = 60">6</li>
+								<li v-on:click="startPag = 61 ; lastPag = 70">7</li>
+								<li v-on:click="startPag = 71 ; lastPag = 80">8</li>
+								<li v-on:click="startPag = 81 ; lastPag = 90">9</li>
+								<li v-on:click="startPag = 91 ; lastPag = 100">10</li>
+								<li>&raquo;</li>
+							</ul>
+						</div>
+			      	</div>
+			    </div>
+
+			    <div class="w3-third w3-container" v-if="selectedServer == 'all' || selectedServer == 'history'" style="padding-bottom: 55px">
+			      	<div class="w3-container w3-white">
+			        	<p><b>History</b></p>
+			        	<ul>
+							<li v-for="item in paginationBoth" >{{item.time}} and {{item.secret}}- il y'a : {{dateDiff(item.date)}} seconde(s)</li>
+						</ul>
+						<div class="pagination">
+							<ul>
+								<li>&laquo;</li>
+								<li v-on:click="startPag = 0 ; lastPag = 10" >1</li>
+								<li v-on:click="startPag = 11 ; lastPag = 20">2</li>
+								<li v-on:click="startPag = 21 ; lastPag = 30">3</li>
+								<li v-on:click="startPag = 31 ; lastPag = 40">4</li>
+								<li v-on:click="startPag = 41 ; lastPag = 50">5</li>
+								<li v-on:click="startPag = 51 ; lastPag = 60">6</li>
+								<li v-on:click="startPag = 61 ; lastPag = 70">7</li>
+								<li v-on:click="startPag = 71 ; lastPag = 80">8</li>
+								<li v-on:click="startPag = 81 ; lastPag = 90">9</li>
+								<li v-on:click="startPag = 91 ; lastPag = 100">10</li>
+								<li>&raquo;</li>
+							</ul>
+						</div>
+			      	</div>
+			    </div>
+
+			    <div class="w3-third w3-container" v-show="selectedServer == 'editor'" style="padding-bottom: 55px">
+			      	<div class="w3-container w3-white">
+			        	<p><b>Changer le mot secret</b></p>
+			        	<div class="secret">
+							<form v-on:submit.prevent="editSecret()" id="formSecret">
+								<input type="text" name="editSecret" id="editSecret">
+								<input type="submit" name="submitEditSecret" value="modifier">
+							</form>
+							<div v-if="secretvalue.length > 0">
+								<span class="discret">Vous avez modifié le mot secret ;)</span>
+								<i class="fa fa-sync" @click="secretvalue = ''"></i>
+							</div>
+							<i class="fas fa-long-arrow-alt-left" @click="selectedServer = 'secret'"></i>
+						</div>
+			      	</div>
+			    </div>
+			 </div>
+
+			  	<!-- Footer -->
+			  	<footer id="footer" class="w3-container w3-padding-32 w3-dark-grey">
+				  	<div class="w3-row-padding">
+				    	<div class="w3-third">
+				      		<h3>A bientôt</h3>
+				      		<p>Merci d'avoir joué avec nos servers !</p>
+				    	</div>
+				  	</div>
+			  	</footer>
+			</div>
+
+			<script>
+			// Script to open and close sidebar
+			function w3_open() {
+			    document.getElementById("mySidebar").style.display = "block";
+			    document.getElementById("myOverlay").style.display = "block";
+			}
+			 
+			function w3_close() {
+			    document.getElementById("mySidebar").style.display = "none";
+			    document.getElementById("myOverlay").style.display = "none";
+			}
+			</script>
+	</div>
+
+	<script type="text/javascript" src="/client/lib/vue.js"></script>
+	<script src="/client/client.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+.pagination {
+    display: inline-block;
+    border-top: 1px solid #0288d1;
+}
+
+/* ELEMENT */
+body {
+	font-family: sans-serif;
+}
+i {
+	color: #0288d1;
+}
+footer {
+	position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* CLASSES */
+.discret {
+	color: #0288d1;
+	line-height: 50px;
+	font-size: 0.8em;
+}
+.float-right{
+	float: right;
+}
+.flex {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+    align-items: center;
+}
+
+/* IDS */
+#formSecret{
+	padding: 10px 0 25px 0;
+}
+#formSecret input[type=submit] {
+	background-color: #0288d1;
+	color: white;
+	border: none;
+}
+#formSecret input[type=submit]:hover {
+	background-color: white;
+	color: #0288d1;
+	border: none;
+}
+#github {
+	font-size: 3em;
+	position: absolute;
+	bottom: 50px;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.pagination li.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination li:hover:not(.active) {background-color: #ddd;}
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.pagination ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+.pagination li {
+    width: 20px
+}
