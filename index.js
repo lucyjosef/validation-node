@@ -1,7 +1,6 @@
 const express = require('express')
 const fs = require('fs')
 fse = require('fs-extra')
-
 const port = 8000
 
 const app = express()
