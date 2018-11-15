@@ -4,6 +4,7 @@
 		data:{
 			title: 'Validation Node2',
 			secretvalue: '',
+			selectedServer: 'all'
 		},
 		methods: {
 			editSecret: function() {

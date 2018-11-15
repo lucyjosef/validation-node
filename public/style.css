@@ -1,0 +1,35 @@
+
+/* ELEMENT */
+body {
+	font-family: sans-serif;
+}
+i {
+	color: #0288d1;
+}
+footer {
+	position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* CLASSES */
+.discret {
+	color: #0288d1;
+	line-height: 50px;
+	font-size: 0.8em;
+}
+
+/* IDS */
+#formSecret{
+	padding: 10px 0 25px 0;
+}
+#formSecret input[type=submit] {
+	background-color: #0288d1;
+	color: white;
+	border: none;
+}
+#formSecret input[type=submit]:hover {
+	background-color: white;
+	color: #0288d1;
+	border: none;
+}
