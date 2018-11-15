@@ -12,6 +12,9 @@ const app2 = express()
 const app3 = express()
 const app4 = express()
 
+const jsonMiddleware = express.json()
+app2.use(jsonMiddleware)
+
 
 /* APP 1 */
 app1.listen(port1, () => {
@@ -21,29 +24,6 @@ app1.listen(port1, () => {
 app1.get('/', function(req, res){
 	console.log('route de base')
 })
-
-
-/* APP 2 secret server */
-app2.listen(port2, () => {
-  console.log(`Listening on ${port2}`)
-})
-
-app2.get('/secret', function(req, res){
-	fs.readFile(__dirname + '/data/secret.txt', 'utf8', (err, data) => {
-		if (err) throw err;
-		const reversed = reverseString(data)
-		res.send(reversed)
-	})
-})
-
-app2.put('/secret', function(req,res) {
-	console.log(req.body)
-	// const reversed = reverseString(req.body.toString())
-	// fs.writeFile(__dirname + '/data/secret.txt', reversed, 'utf8', ()=>{
-	// 	res.json(reversed)
-	// })
-})
-
 
 /* APP 3 */
 app3.listen(port3, () => {
