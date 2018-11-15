@@ -16,14 +16,13 @@
             })
             .then((myJson) =>{
                 let data = JSON.parse(myJson)
-                if(this.timeServ.length === 10){
+                if(this.timeServ.length === 100){
                     this.timeServ.shift()
                     data.forEach(el =>{ 
                         this.timeServ.push({'date': el.date, "time": Date.now()})
                     })
                 }else{
                     data.forEach(el =>{ 
-                        // this.timeServ.push(el)
                         this.timeServ.push({'date': el.date, "time": Date.now()})
                     })
                 }
@@ -65,6 +64,15 @@
 			title: 'Validation Node2',
             timeServ:[],
             secretServ: [],
+            startPag: 0,
+            lastPag : 10,
+        }, 
+        computed:{
+          pagination: function (){
+            console.log(this.startPag, this.lastPag)
+            return this.timeServ.slice(this.startPag, this.lastPag)
+
+          },
 		},
 		methods: {
 			editSecret: function() {
