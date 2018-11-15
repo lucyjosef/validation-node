@@ -73,27 +73,22 @@
 						<ul>
 							<li v-for="item in pagination" >{{item.date}} - il y'a : {{dateDiff(item.time)}} seconde(s)</li>
 						</ul>
-					
-					
-					
-					
-							<div class="pagination">
-								<ul>
-
-									<li>&laquo;</li>
-									<li v-on:click="startPag = 0 ; lastPag = 10" >1</li>
-									<li v-on:click="startPag = 11 ; lastPag = 20">2</li>
-									<li v-on:click="startPag = 21 ; lastPag = 30">3</li>
-									<li v-on:click="startPag = 31 ; lastPag = 40">4</li>
-									<li v-on:click="startPag = 41 ; lastPag = 50">5</li>
-									<li v-on:click="startPag = 51 ; lastPag = 60">6</li>
-									<li v-on:click="startPag = 61 ; lastPag = 70">7</li>
-									<li v-on:click="startPag = 71 ; lastPag = 80">8</li>
-									<li v-on:click="startPag = 81 ; lastPag = 90">9</li>
-									<li v-on:click="startPag = 91 ; lastPag = 100">10</li>
-									<li>&raquo;</li>
-								</ul>
-								  </div>
+						<div class="pagination">
+							<ul>
+								<li>&laquo;</li>
+								<li v-on:click="startPag = 0 ; lastPag = 10" >1</li>
+								<li v-on:click="startPag = 11 ; lastPag = 20">2</li>
+								<li v-on:click="startPag = 21 ; lastPag = 30">3</li>
+								<li v-on:click="startPag = 31 ; lastPag = 40">4</li>
+								<li v-on:click="startPag = 41 ; lastPag = 50">5</li>
+								<li v-on:click="startPag = 51 ; lastPag = 60">6</li>
+								<li v-on:click="startPag = 61 ; lastPag = 70">7</li>
+								<li v-on:click="startPag = 71 ; lastPag = 80">8</li>
+								<li v-on:click="startPag = 81 ; lastPag = 90">9</li>
+								<li v-on:click="startPag = 91 ; lastPag = 100">10</li>
+								<li>&raquo;</li>
+							</ul>
+						</div>
 			      	</div>
 			    </div>
 
