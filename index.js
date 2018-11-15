@@ -3,12 +3,10 @@ const fs = require('fs')
 
 const port1 = 4000
 const port2 = 4001
-const port3 = 4002
 const port4 = 4003
 
 const app1 = express()
 const app2 = express()
-const app3 = express()
 const app4 = express()
 
 
@@ -29,12 +27,6 @@ app2.listen(port2, () => {
 
 app2.get('/secret', function(req, res){
 	console.log('secret')
-})
-
-
-/* APP 3 */
-app3.listen(port3, () => {
-  console.log(`Listening on ${port3}`)
 })
 
 /* APP 4 */
