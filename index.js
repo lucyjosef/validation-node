@@ -38,9 +38,3 @@ app4.use(
   '/client',
   express.static(__dirname + '/public')
 )
-
-
-/* PRIVATE FUNCTIONS */
-function reverseString(str) {
-	return str.split('').reverse().join('')
-}
