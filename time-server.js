@@ -1,6 +1,18 @@
 const express = require('express')
 const port = 4000
 const app = express()
+const cors = require('cors');
+
+
+const fs = require('fs');
+
+
+app.use(cors());
+app.options('*', cors());
+
+
+const jsonMiddleware = express.json()
+app.use(jsonMiddleware)
 
 
 app.get('/', (req, res) => {
@@ -24,7 +36,8 @@ app.get('/', (req, res) => {
 
     // respond with json
     if (req.accepts('json')) {
-        let json = [{date : datetime}]
+
+        let json = JSON.stringify([{"date" : datetime}])
         res
         .header('content-type : application/json')
         .json(json)
