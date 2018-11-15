@@ -23,7 +23,10 @@
 		    	<a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
 		      		<i class="fa fa-remove"></i>
 		    	</a>
-		    	<img src="/w3images/avatar_g2.jpg" style="width:45%;" class="w3-round"><br><br>
+		    	<img src="/client/assets/img/sheep.jpg" style="width:100%;" class="w3-round">
+		    	<!-- <iframe src="https://giphy.com/embed/sk6yL9EGVeAcE" width="480" height="197" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+		    	<p><a href="https://giphy.com/gifs/matrix-cinematography-sk6yL9EGVeAcE"></a></p> -->
+		    	<br><br>
 		    	<h4><b>NODE.js et Vue.js</b></h4>
 		    	<p class="w3-text-grey">Membres du groupe : Jérémie, Maxime et Lucie.<br>Trois servers différents, Time, Secret et History. <br>Have fun !</p>
 		  	</div>
@@ -72,16 +75,8 @@
 			      	<div class="w3-container w3-white">
 				        <p><strong>Secret</strong></p>
 				        <p>Descriptioin du server secret par Lucie</p>
-				        <div class="secret">
-							<form v-on:submit.prevent="editSecret()" id="formSecret">
-								<input type="text" name="editSecret" id="editSecret">
-								<input type="submit" name="submitEditSecret" value="modifier">
-							</form>
-							<div v-if="secretvalue.length > 0">
-								<span class="discret">Vous avez modifié le mot secret ;)</span>
-								<i class="fa fa-sync" @click="secretvalue = ''"></i>
-							</div>
-					</div>
+				        <p>Le mot actuel est : {{ getSecret }} </p>
+						<i class="far fa-plus-square" style="font-size:3em;" @click="selectedServer = 'editor'"></i>
 			      	</div>
 			    </div>
 
@@ -92,17 +87,35 @@
 			        	<p>Description de la partie history server Maxime</p>
 			      	</div>
 			    </div>
-			  </div>
 
-			  <!-- Footer -->
-			  <footer class="w3-container w3-padding-32 w3-dark-grey">
-			  <div class="w3-row-padding">
-			    <div class="w3-third">
-			      <h3>FOOTER</h3>
-			      <p>Merci d'avoir joué avec nos servers !</p>
+			    <div class="w3-third w3-container" v-show="selectedServer == 'editor'" style="padding-bottom: 55px">
+			      	<img src="/w3images/nature.jpg" alt="History" style="width:100%" class="w3-hover-opacity">
+			      	<div class="w3-container w3-white">
+			        	<p><b>Changer le mot secret</b></p>
+			        	<div class="secret">
+							<form v-on:submit.prevent="editSecret()" id="formSecret">
+								<input type="text" name="editSecret" id="editSecret">
+								<input type="submit" name="submitEditSecret" value="modifier">
+							</form>
+							<div v-if="secretvalue.length > 0">
+								<span class="discret">Vous avez modifié le mot secret ;)</span>
+								<i class="fa fa-sync" @click="secretvalue = ''"></i>
+							</div>
+							<i class="fas fa-long-arrow-alt-left" @click="selectedServer = 'secret'"></i>
+						</div>
+			      	</div>
 			    </div>
-			  </div>
-			  </footer>
+			 </div>
+
+			  	<!-- Footer -->
+			  	<footer id="footer" class="w3-container w3-padding-32 w3-dark-grey">
+				  	<div class="w3-row-padding">
+				    	<div class="w3-third">
+				      		<h3>A bientôt</h3>
+				      		<p>Merci d'avoir joué avec nos servers !</p>
+				    	</div>
+				  	</div>
+			  	</footer>
 			</div>
 
 			<script>

@@ -10,7 +10,6 @@
 			editSecret: function() {
 				data = {"text": document.getElementById('editSecret').value}
 				this.secretvalue = data.text
-				console.log(data.text)
 				fetch('http://localhost:4001/secret', {
 					method: 'POST',
 					headers: {
@@ -20,10 +19,28 @@
 					body: JSON.stringify(data)
 				})
 					.then((res) => {
-						console.log(res)
 						return res.json()
 					})
 					.catch((err) => {
+						console.log(err)
+					})
+			}
+		},
+		computed: {
+			getSecret: function() {
+				fetch('http://localhost:4001/secret')
+					.then((res) => {
+						console.log("RES")
+						console.log(res)
+						JSON.parse(res)
+						return res.json()
+					})
+					.then((myJson) => {
+						console.log("MYJSON")
+						console.log(myJson)
+					})
+					.catch((err) => {
+						console.log("ERR")
 						console.log(err)
 					})
 			}
