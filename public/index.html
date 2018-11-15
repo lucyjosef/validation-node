@@ -67,6 +67,9 @@
 			      	<div class="w3-container w3-white">
 			        	<p><b>Time</b></p>
 			        	<p>Descriptoin du module time par Jérémie</p>
+			        	<ul>
+			        		<li v-for="item in timeServ"> {{ item.date }} - il y a : {{ dateDiff(item.time) }} seconde(s)</li>
+			        	</ul>
 			      	</div>
 			    </div>
 
@@ -75,8 +78,10 @@
 			      	<div class="w3-container w3-white">
 				        <p><strong>Secret</strong></p>
 				        <p>Descriptioin du server secret par Lucie</p>
-				        <p>Le mot actuel est : {{ getSecret }} </p>
 						<i class="far fa-plus-square" style="font-size:3em;" @click="selectedServer = 'editor'"></i>
+						<ul>
+			        		<li v-for="item in secretServ"> {{ item.text }} </li>
+			        	</ul>
 			      	</div>
 			    </div>
 

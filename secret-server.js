@@ -20,11 +20,18 @@ app.listen(port, () => {
 })
 
 app.get('/secret', function(req, res){
-	fs.readFile(__dirname + '/data/secret.txt', 'utf8', (err, data) => {
-		if (err) throw err;
-		const reversed = reverseString(data)
-		res.send(reversed)
-	})
+	if (req.accepts('json')) {
+		fs.readFile(__dirname + '/data/secret.txt', 'utf8', (err, data) => {
+			if (err) throw err;
+			const reversed = reverseString(data)
+			let json = JSON.stringify([{"text": reversed}])
+			console.log(json)
+			res.send(json)
+		})
+	} else {
+		// error
+		res.sendStatus(406)
+	}
 })
 
 app.post('/secret', (req,res) => {

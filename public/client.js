@@ -4,10 +4,11 @@
         created:function(){
 
         setInterval(()=>{
+        	//fetch time
             fetch('http://localhost:4000/',
             {  
                 headers: {
-                'Accept': 'application/json'
+                	'Accept': 'application/json'
                 },
             })
             .then((res) =>{
@@ -15,40 +16,56 @@
             })
             .then((myJson) =>{
                 let data = JSON.parse(myJson)
-
                 if(this.timeServ.length === 10){
                     this.timeServ.shift()
-
                     data.forEach(el =>{ 
                         this.timeServ.push({'date': el.date, "time": Date.now()})
                     })
-
                 }else{
-
                     data.forEach(el =>{ 
                         // this.timeServ.push(el)
                         this.timeServ.push({'date': el.date, "time": Date.now()})
-
                     })
                 }
             })
-
             .catch(err =>{
                 console.log(err)
                 this.timeServ.push({'date': 'DOWN'})
             })
-        }, 1000)
 
+            // fetch secret
+            fetch('http://localhost:4001/secret', {
+            	headers: {
+            		'Accept': 'application/json'
+            	},
+            })
+			.then((res) => {
+				return res.json()
+			})
+			.then((myJson) => {
+				// let data = JSON.stringify(myJson)
+				// data.forEach(el => {
+				// 	console.log(el.text)
+					
+				// })
+				var test = JSON.stringify(myJson[0].text)
+				console.log(test)
+				this.secretServ.push({'text': test})
+			})
+			.catch((err) => {
+				console.log(err)
+				this.secretServ.push({'text': 'ERROR : missed thisone', "time": Date.now()})
+			})
 
-            
-          
-          },
+        	}, 1000)      
+    	},
 		data:{
 			title: 'Validation Node2',
 			secretvalue: '',
 			selectedServer: 'all',
 			title: 'Validation Node2',
             timeServ:[],
+            secretServ: [],
 		},
 		methods: {
 			editSecret: function() {
@@ -77,25 +94,6 @@
                 let result = Math.floor(diff / 1000);
               return result
             }
-		},
-		computed: {
-			getSecret: function() {
-				fetch('http://localhost:4001/secret')
-					.then((res) => {
-						console.log("RES")
-						console.log(res)
-						JSON.parse(res)
-						return res.json()
-					})
-					.then((myJson) => {
-						console.log("MYJSON")
-						console.log(myJson)
-					})
-					.catch((err) => {
-						console.log("ERR")
-						console.log(err)
-					})
-			}
 		}
 	})
 }
